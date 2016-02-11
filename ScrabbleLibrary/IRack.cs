@@ -1,19 +1,17 @@
-﻿/*
- * Program:         ScrabbleLibrary.dll
- * Module:          ICard.cs
- * Date:            Feb 11, 2016
- * Author:          Richard Mills-Laursen
- * Student Number:  0639240
- * Description:     Represents a Scrabble rack.
- *
- * Modifications:   Feb 11, 2016 
- *                  This is an example modification description.
- *  
- *                  Feb 11, 2016
- *                  This is another modification description example.
- */
-
-
+﻿/**********************************************************************************
+ * Program:         ScrabbleLibrary.dll                                           *
+ * Module:          IRack.cs                                                      *
+ * Date:            Feb 11, 2016                                                  *
+ * Author(s):       Richard Mills-Laursen & Craig MacLeod                         *
+ * Student Number:  0639240 & #######                                             *
+ * Description:     Represents a Scrabble rack.                                   *
+ *                                                                                *
+ * Modifications:   Feb 11, 2016                                                  *
+ *                  This is an example modification description.                  *
+ *                                                                                *
+ *                  Feb 11, 2016                                                  *
+ *                  This is another modification description example.             *
+ **********************************************************************************/
 using System;
 using System.Collections.Generic;
 using System.Linq;

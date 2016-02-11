@@ -1,4 +1,18 @@
-﻿using System;
+﻿/**********************************************************************************
+ * Program:         ScrabbleLibrary.dll                                           *
+ * Module:          Bag.cs                                                        *
+ * Date:            Feb 11, 2016                                                  *
+ * Author(s):       Richard Mills-Laursen & Craig MacLeod                         *
+ * Student Number(s):  0639240 & #######                                          *
+ * Description:     Implementation class for the Scrabble bag interface.          *
+ *                                                                                *
+ * Modifications:   Feb 11, 2016                                                  *
+ *                  This is an example modification description.                  *
+ *                                                                                *
+ *                  Feb 11, 2016                                                  *
+ *                  This is another modification description example.             *
+ **********************************************************************************/
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
