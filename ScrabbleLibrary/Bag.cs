@@ -15,8 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-/*
-ScrabbleLibrary
+/*ScrabbleLibrary
   Must be implemented as a class library assembly using C#
   Must work with your own .NET client
   Must work fully with the Excel client provided (ScrabbleExcelClient.xlsm) without making any changes to the client except to add a reference to your own
