@@ -6,11 +6,6 @@
  * Student Number(s):  0639240 & #######                                          *
  * Description:     Implementation class for the Scrabble bag interface.          *
  *                                                                                *
- * Modifications:   Feb 11, 2016                                                  *
- *                  This is an example modification description.                  *
- *                                                                                *
- *                  Feb 11, 2016                                                  *
- *                  This is another modification description example.             *
  **********************************************************************************/
 using System;
 using System.Collections.Generic;

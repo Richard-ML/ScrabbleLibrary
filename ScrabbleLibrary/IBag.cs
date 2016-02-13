@@ -6,11 +6,6 @@
  * Student Number:  0639240 & #######                                             *
  * Description:     Represents a Scrabble bag.                                    *
  *                                                                                *
- * Modifications:   Feb 11, 2016                                                  *
- *                  This is an example modification description.                  *
- *                                                                                *
- *                  Feb 11, 2016                                                  *
- *                  This is another modification description example.             *
  **********************************************************************************/
 using System;
 using System.Collections.Generic;
