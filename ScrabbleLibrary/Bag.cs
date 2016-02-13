@@ -14,6 +14,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
+/*
+ScrabbleLibrary
+  Must be implemented as a class library assembly using C#
+  Must work with your own .NET client
+  Must work fully with the Excel client provided (ScrabbleExcelClient.xlsm) without making any changes to the client except to add a reference to your own
+   ScrabbleLibrary assembly’s type library (a type library for your ScrabbleLibrary will be generated and registered automatically if you configure the project properties required to use it via COM Interop).
+  Must recognize letters in UPPERCASE format. May optionally recognize lowercase letters as well
+
+    */
 namespace ScrabbleLibrary
 {
     class Bag : IBag
@@ -67,6 +77,12 @@ namespace ScrabbleLibrary
  
         }
 
+
+
+/* GetPoints() method accepts a string containing a candidate word and returns its potential point value based on two criteria: 1)
+the letters of the candidate string are a subset of the letters in the current rack object, 2) the candidate provided is a valid
+word as tested using the IApplication interface’s CheckSpelling() method. If a candidate word fails to meet either criteria
+the method return 0.*/
         public int GetPoints(string candidate)
         {
             int score = 0;
@@ -81,17 +97,30 @@ namespace ScrabbleLibrary
             return score;
         }
 
+
+/*PlayWord() method tests the candidate word just as GetPoints() does, but for a valid word also 
+removes the letters of the word from the rack object and returns a string containing the remaining letters.*/
         public string PlayWord(string candidate)
         {
             throw new NotImplementedException();
         }
 
+/*SwapAll() method does nothing if either the rack or the bag have fewer than seven tiles, otherwise it discards the rack’s current tiles and takes seven new
+tiles from the bag. The method also returns a string containing all the rack’s letters on completion of the method call.*/
         public string SwapAll()
         {
             throw new NotImplementedException();
         }
 
+/*TopUp() method does nothing if the rack already has seven tiles or if the bag is empty, otherwise it adds new tiles to the rack from the bag until either the rack
+contains seven tiles or the bag is empty. The method also returns a string containing all the rack’s letters on completion of the method call. */
         public string TopUp()
+        {
+            throw new NotImplementedException();
+        }
+
+        /*ToString() method simply returns a string containing all the rack’s letters. This method will override the existing inherited ToString() method.*/
+        public override string ToString()
         {
             throw new NotImplementedException();
         }
