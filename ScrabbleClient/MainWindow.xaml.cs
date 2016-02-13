@@ -29,9 +29,22 @@ namespace ScrabbleClient
             cbNumPlayers.Items.Add(3);
             cbNumPlayers.Items.Add(4);
 
+            cbNumPlayers.SelectedIndex = 0;
+
             //Populate default current player options
             cbCurPlayer.Items.Add(1);
             cbCurPlayer.Items.Add(2);
+
+            cbCurPlayer.SelectedIndex = 0;
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Are you sure you wish to exit?", "Confirmation", MessageBoxButton.YesNoCancel);
+            if (result == MessageBoxResult.Yes)
+            {
+                this.Close();//Use confirmed that they wish to exit the application. Grant their wish by exiting the application.
+            }
         }
     }
 }
