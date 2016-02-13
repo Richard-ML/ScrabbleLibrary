@@ -22,7 +22,7 @@ namespace ScrabbleLibrary
         private List<char> letters;
 
         Bag() {
-            letters = new List<char>
+           List<char> temp = new List<char>
             {
                 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A',
                 'B', 'B',
@@ -52,7 +52,18 @@ namespace ScrabbleLibrary
                 'Z'
             };
 
-            //shuffle letters
+            //shuffle chars into letters list
+            Random rNum = new Random();
+            int randNum;
+            while (temp.Count > 0)
+            {
+                randNum = rNum.Next(0, temp.Count);
+                letters.Add(temp[randNum]); 
+                temp.RemoveAt(randNum); 
+            }
+
+
+ 
         }
 
         public int GetPoints(string candidate)
