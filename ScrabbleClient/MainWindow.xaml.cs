@@ -23,16 +23,15 @@ namespace ScrabbleClient
         public MainWindow()
         {
             InitializeComponent();
-        }
 
-        private void textBox1_TextChanged(object sender, TextChangedEventArgs e)
-        {
+            //Populate options for the number of players
+            cbNumPlayers.Items.Add(2);
+            cbNumPlayers.Items.Add(3);
+            cbNumPlayers.Items.Add(4);
 
-        }
-
-        private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
+            //Populate default current player options
+            cbCurPlayer.Items.Add(1);
+            cbCurPlayer.Items.Add(2);
         }
     }
 }

@@ -19,15 +19,15 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Label x:Name="label" Content="Number of Players:" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Center"/>
-        <ComboBox x:Name="comboBox" Grid.ColumnSpan="3" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" Margin="24.4,32,0,0" VerticalAlignment="Top" Width="235" SelectionChanged="comboBox_SelectionChanged"/>
-        <ComboBox x:Name="comboBox1" Grid.ColumnSpan="1" HorizontalAlignment="Left" Margin="4,32,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Rack" VerticalAlignment="Top" Width="120" Grid.Column="1" Margin="4.4,32,0,0" Grid.Row="1"/>
-        <Button x:Name="button" Content="Top Up" Grid.Column="2" HorizontalAlignment="Left" Margin="9.8,35,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="button1" Content="Swap Letters" Grid.Column="3" HorizontalAlignment="Left" Margin="10.2,35,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75"/>
-        <Label x:Name="label1" Content="Word:" HorizontalAlignment="Left" Margin="88,37,0,0" Grid.Row="2" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="textBox1" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="10.4,37,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Word" VerticalAlignment="Top" Width="120" TextChanged="textBox1_TextChanged"/>
-        <Button x:Name="button2" Content="Close" Grid.Column="3" HorizontalAlignment="Left" Margin="10.2,36,0,0" Grid.Row="3" VerticalAlignment="Top" Width="75" ToolTip="Exits the client"/>
+        <Label x:Name="lblNumPlayers" Content="Number of Players:" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Center"/>
+        <ComboBox x:Name="cbNumPlayers" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" Margin="14.4,35,0,0" VerticalAlignment="Top" Width="235" SelectionChanged="comboBox_SelectionChanged"/>
+        <ComboBox x:Name="cbCurPlayer" Grid.ColumnSpan="1" HorizontalAlignment="Left" Margin="4,32,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbRack" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Rack" VerticalAlignment="Top" Width="120" Grid.Column="1" Margin="4.4,32,0,0" Grid.Row="1"/>
+        <Button x:Name="btnTopUp" Content="Top Up" Grid.Column="2" HorizontalAlignment="Left" Margin="9.8,35,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="btnSwapLetters" Content="Swap Letters" Grid.Column="3" HorizontalAlignment="Left" Margin="10.2,35,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75"/>
+        <Label x:Name="lblWord" Content="Word:" HorizontalAlignment="Left" Margin="88,37,0,0" Grid.Row="2" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="tbWord" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="10.4,37,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Word" VerticalAlignment="Top" Width="120" TextChanged="textBox1_TextChanged"/>
+        <Button x:Name="btnClose" Content="Close" Grid.Column="3" HorizontalAlignment="Left" Margin="10.2,36,0,0" Grid.Row="3" VerticalAlignment="Top" Width="75" ToolTip="Exits the client"/>
 
     </Grid>
 </Window>
