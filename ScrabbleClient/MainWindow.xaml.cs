@@ -24,6 +24,12 @@ namespace ScrabbleClient
         {
             InitializeComponent();
 
+            //Populate default current player options
+            cbCurPlayer.Items.Add(1);
+            cbCurPlayer.Items.Add(2);
+
+            cbCurPlayer.SelectedIndex = 0;
+
             //Populate options for the number of players
             cbNumPlayers.Items.Add(2);
             cbNumPlayers.Items.Add(3);
@@ -31,11 +37,7 @@ namespace ScrabbleClient
 
             cbNumPlayers.SelectedIndex = 0;
 
-            //Populate default current player options
-            cbCurPlayer.Items.Add(1);
-            cbCurPlayer.Items.Add(2);
 
-            cbCurPlayer.SelectedIndex = 0;
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
@@ -45,6 +47,25 @@ namespace ScrabbleClient
             {
                 this.Close();//Use confirmed that they wish to exit the application. Grant their wish by exiting the application.
             }
+        }
+
+        private void cbNumPlayers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            bool done = false;
+            while (!done)
+                if (cbCurPlayer.Items.Count < (int)cbNumPlayers.SelectedValue)
+                {
+                    cbCurPlayer.Items.Add((int) 1+ cbCurPlayer.Items.Count);//magic
+                }
+            else if(cbCurPlayer.Items.Count > (int)cbNumPlayers.SelectedValue)
+                {
+                    cbCurPlayer.Items.RemoveAt(-1 + cbCurPlayer.Items.Count);
+                }
+                else
+                {
+                    done = true;
+                }
+
         }
     }
 }

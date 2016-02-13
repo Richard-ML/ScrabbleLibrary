@@ -20,7 +20,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Label x:Name="lblNumPlayers" Content="Number of Players:" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Center"/>
-        <ComboBox x:Name="cbNumPlayers" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" Margin="14.4,35,0,0" VerticalAlignment="Top" Width="235"/>
+        <ComboBox x:Name="cbNumPlayers" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" Margin="14.4,35,0,0" VerticalAlignment="Top" Width="235" SelectionChanged="cbNumPlayers_SelectionChanged"/>
         <ComboBox x:Name="cbCurPlayer" ToolTip="Current Players Turn"  Grid.ColumnSpan="1" HorizontalAlignment="Left" Margin="4,32,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="tbRack" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Rack" VerticalAlignment="Top" Width="120" Grid.Column="1" Margin="4.4,32,0,0" Grid.Row="1"/>
         <Button x:Name="btnTopUp" Content="Top Up" Grid.Column="2" HorizontalAlignment="Left" Margin="9.8,35,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75"/>
