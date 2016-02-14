@@ -41,7 +41,7 @@ namespace ScrabbleLibrary
        
         public Bag()
         {
-            this.rack = new string[3];
+           
             List<char> temp = new List<char>
             {
                 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A',
