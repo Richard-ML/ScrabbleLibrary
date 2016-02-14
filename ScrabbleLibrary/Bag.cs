@@ -112,7 +112,22 @@ the method return 0.*/
 removes the letters of the word from the rack object and returns a string containing the remaining letters.*/
         public string PlayWord(string candidate)
         {
-            throw new NotImplementedException();
+            for(int i = 0; i < candidate.Length; i++)
+            {
+                for(int j = 0; j < rack.Length; j++)
+                {
+                    if (candidate[i] == rack[j])
+                    {
+                        rack.Remove(rack[j]);
+                        TopUp();
+                    }
+                    else
+                    {
+                        //write to text field "your rack does not contain one or more of the required letters."
+                    }
+                }
+            }
+            return rack;
         }
 
 /*SwapAll() method does nothing if either the rack or the bag have fewer than seven tiles, otherwise it discards the rack’s current tiles and takes seven new
@@ -126,10 +141,15 @@ tiles from the bag. The method also returns a string containing all the rack’s
 contains seven tiles or the bag is empty. The method also returns a string containing all the rack’s letters on completion of the method call. */
         public string TopUp()
         {
-            throw new NotImplementedException();
+            if (rack.Length != 7)
+            {
+                rack = rack + letters[0];
+                letters.Remove(letters[0]);
+            }
+            return rack;
         }
 
-        /*ToString() method simply returns a string containing all the rack’s letters. This method will override the existing inherited ToString() method.*/
+/*ToString() method simply returns a string containing all the rack’s letters. This method will override the existing inherited ToString() method.*/
         public override string ToString()
         {
             throw new NotImplementedException();
