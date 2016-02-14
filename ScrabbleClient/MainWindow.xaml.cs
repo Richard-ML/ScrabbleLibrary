@@ -55,6 +55,7 @@ namespace ScrabbleClient
         private void cbNumPlayers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             bag.numPlayers = (int)cbNumPlayers.SelectedValue;
+            bag.NewRack();
 
             bool done = false;
             while (!done)
@@ -78,6 +79,7 @@ namespace ScrabbleClient
             bag.currPlayer = (int)cbCurPlayer.SelectedValue;
 
             bag.TopUp();
+            
             tbRack.Text = bag.ToString();
         }
     }
