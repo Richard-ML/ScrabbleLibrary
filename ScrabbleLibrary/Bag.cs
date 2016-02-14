@@ -25,11 +25,12 @@ using System.Threading.Tasks;
     */
 namespace ScrabbleLibrary
 {
-    class Bag : IBag
+    public class Bag : IBag
     {
-
         private Dictionary<char, int> letterValue = new Dictionary<char, int>() { { 'a', 1 }, { 'b', 3 }, { 'c', 3 }, { 'd', 2 }, { 'e', 1 }, { 'f', 4 }, { 'g', 2 }, { 'h', 4 }, { 'i', 1 }, { 'j', 8 }, { 'k', 5 }, { 'l', 1 }, { 'm', 3 }, { 'n', 1 }, { 'o', 1 }, { 'p', 3 }, { 'q', 10 }, { 'r', 1 }, { 's', 1 }, { 't', 1 }, { 'u', 1 }, { 'v', 4 }, { 'w', 4 }, { 'x', 8 }, { 'y', 4 }, { 'z', 10 } };
         private List<char> letters;
+        public int currPlayer = 1;
+        public int numPlayers = 1;
 
         public string[] rack
         {
@@ -44,7 +45,7 @@ namespace ScrabbleLibrary
             }
         }
 
-        Bag()
+        public Bag()
         {
             List<char> temp = new List<char>
             {
@@ -113,61 +114,101 @@ namespace ScrabbleLibrary
         removes the letters of the word from the rack object and returns a string containing the remaining letters.*/
         public string PlayWord(string candidate)
         {
+            //for loop for the number of chars in the word player is trying to play
             for (int i = 0; i < candidate.Length; i++)
             {
+                //for loop for the number of chars in players rack
                 for (int j = 0; j < rack.Length; j++)
                 {
-                    if (candidate[i] == rack[1][j])
+                    //for loop for the number of players
+                    for (int x = 0; x < numPlayers; ++x)
                     {
-                        rack[1].Remove(rack[1][j]);
-                        //rack[].Remove(rack[1][j]);
-                    }
-                    else
-                    {
-                        //write to text field "your rack does not contain one or more of the required letters."
+                        if (candidate[i] == rack[x][j])
+                        {
+                            rack[x].Remove(rack[x][j]);
+                        }
+                        else
+                        {
+                            //write to text field "your rack does not contain one or more of the required letters."
+                        }
                     }
                 }
             }
-            TopUp();
-            return rack;
+            for (int x = 0; x < numPlayers; ++x)
+            {
+                if (numPlayers == currPlayer)
+                {
+                    return rack[x];
+                }
+            }
+            return null;
         }
 
         /*SwapAll() method does nothing if either the rack or the bag have fewer than seven tiles, otherwise it discards the rack’s current tiles and takes seven new
         tiles from the bag. The method also returns a string containing all the rack’s letters on completion of the method call.*/
         public string SwapAll()
         {
-            if (!(rack.Length < 7))
+            for (int x = 0; x < numPlayers; ++x)
             {
-                if(!(letters.Count < 7))
+                if(numPlayers == currPlayer)
                 {
-                    rack = "";
-                    TopUp();
-                }
-                else
-                {
-                    //write to textbox "Your bag does not have enough letters left to swap
+                    if (!(rack[x].Length < 7))
+                    {
+                        if (!(letters.Count < 7))
+                        {
+                            rack[x] = "";
+                        }
+                        else
+                        {
+                            //write to textbox "Your bag does not have enough letters left to swap
+                        }
+                    }
+                    else
+                    {
+                        //Write to textbox "Your rack must contain 7 letters to use Swap!"
+                    }
                 }
             }
-            else
+            TopUp();
+
+            for (int x = 0; x < numPlayers; ++x)
             {
-                //Write to textbox "Your rack must contain 7 letters to use Swap!"
+                if (numPlayers == currPlayer)
+                {
+                    return rack[x];
+                }
             }
-            return rack;
+            return null;
         }
 
         /*TopUp() method does nothing if the rack already has seven tiles or if the bag is empty, otherwise it adds new tiles to the rack from the bag until either the rack
         contains seven tiles or the bag is empty. The method also returns a string containing all the rack’s letters on completion of the method call. */
         public string TopUp()
         {
-            while (rack.Length != 7)
+            for (int x = 0; x < numPlayers; ++x)
             {
-                if (letters.Count != 0)
+                if(numPlayers == currPlayer)
                 {
-                    rack = rack + letters[0];
-                    letters.Remove(letters[0]);
+                    while (rack[x].Length != 7)
+                    {
+                        if (letters.Count != 0)
+                        {
+                            rack[x] = rack[x] + letters[0];
+                            letters.Remove(letters[0]);
+                        }
+                    }
+                }
+
+            }
+
+            for (int x = 0; x < numPlayers; ++x)
+            {
+                if (numPlayers == currPlayer)
+                {
+                    return rack[x];
                 }
             }
-            return rack;
+            return null;
         }
 
         /*ToString() method simply returns a string containing all the rack’s letters. This method will override the existing inherited ToString() method.*/
