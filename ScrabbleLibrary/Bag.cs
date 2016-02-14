@@ -44,8 +44,9 @@ namespace ScrabbleLibrary
             }
         }
 
-        Bag() {
-           List<char> temp = new List<char>
+        Bag()
+        {
+            List<char> temp = new List<char>
             {
                 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A',
                 'B', 'B',
@@ -81,40 +82,40 @@ namespace ScrabbleLibrary
             while (temp.Count > 0)
             {
                 randNum = rNum.Next(0, temp.Count);
-                letters.Add(temp[randNum]); 
-                temp.RemoveAt(randNum); 
+                letters.Add(temp[randNum]);
+                temp.RemoveAt(randNum);
             }
 
         }
 
 
 
-/* GetPoints() method accepts a string containing a candidate word and returns its potential point value based on two criteria: 1)
-the letters of the candidate string are a subset of the letters in the current rack object, 2) the candidate provided is a valid
-word as tested using the IApplication interface’s CheckSpelling() method. If a candidate word fails to meet either criteria
-the method return 0.*/
+        /* GetPoints() method accepts a string containing a candidate word and returns its potential point value based on two criteria: 1)
+        the letters of the candidate string are a subset of the letters in the current rack object, 2) the candidate provided is a valid
+        word as tested using the IApplication interface’s CheckSpelling() method. If a candidate word fails to meet either criteria
+        the method return 0.*/
         public int GetPoints(string candidate)
         {
             int score = 0;
             candidate = candidate.ToLower();
             int value;
-            
+
             for (int nc = 0; nc < candidate.Length; nc++)
             {
                 if (letterValue.TryGetValue(candidate.ElementAt(nc), out value))
-                     score += value;                
+                    score += value;
             }
             return score;
         }
 
 
-/*PlayWord() method tests the candidate word just as GetPoints() does, but for a valid word also 
-removes the letters of the word from the rack object and returns a string containing the remaining letters.*/
+        /*PlayWord() method tests the candidate word just as GetPoints() does, but for a valid word also 
+        removes the letters of the word from the rack object and returns a string containing the remaining letters.*/
         public string PlayWord(string candidate)
         {
-            for(int i = 0; i < candidate.Length; i++)
+            for (int i = 0; i < candidate.Length; i++)
             {
-                for(int j = 0; j < rack.Length; j++)
+                for (int j = 0; j < rack.Length; j++)
                 {
                     if (candidate[i] == rack[j])
                     {
@@ -130,26 +131,45 @@ removes the letters of the word from the rack object and returns a string contai
             return rack;
         }
 
-/*SwapAll() method does nothing if either the rack or the bag have fewer than seven tiles, otherwise it discards the rack’s current tiles and takes seven new
-tiles from the bag. The method also returns a string containing all the rack’s letters on completion of the method call.*/
+        /*SwapAll() method does nothing if either the rack or the bag have fewer than seven tiles, otherwise it discards the rack’s current tiles and takes seven new
+        tiles from the bag. The method also returns a string containing all the rack’s letters on completion of the method call.*/
         public string SwapAll()
         {
-            throw new NotImplementedException();
-        }
-
-/*TopUp() method does nothing if the rack already has seven tiles or if the bag is empty, otherwise it adds new tiles to the rack from the bag until either the rack
-contains seven tiles or the bag is empty. The method also returns a string containing all the rack’s letters on completion of the method call. */
-        public string TopUp()
-        {
-            if (rack.Length != 7)
+            if (!(rack.Length < 7))
             {
-                rack = rack + letters[0];
-                letters.Remove(letters[0]);
+                if(!(letters.Count < 7))
+                {
+                    rack = "";
+                    TopUp();
+                }
+                else
+                {
+                    //write to textbox "Your bag does not have enough letters left to swap
+                }
+            }
+            else
+            {
+                //Write to textbox "Your rack must contain 7 letters to use Swap!"
             }
             return rack;
         }
 
-/*ToString() method simply returns a string containing all the rack’s letters. This method will override the existing inherited ToString() method.*/
+        /*TopUp() method does nothing if the rack already has seven tiles or if the bag is empty, otherwise it adds new tiles to the rack from the bag until either the rack
+        contains seven tiles or the bag is empty. The method also returns a string containing all the rack’s letters on completion of the method call. */
+        public string TopUp()
+        {
+            while (rack.Length != 7)
+            {
+                if (letters.Count != 0)
+                {
+                    rack = rack + letters[0];
+                    letters.Remove(letters[0]);
+                }
+            }
+            return rack;
+        }
+
+        /*ToString() method simply returns a string containing all the rack’s letters. This method will override the existing inherited ToString() method.*/
         public override string ToString()
         {
             throw new NotImplementedException();
@@ -160,10 +180,12 @@ contains seven tiles or the bag is empty. The method also returns a string conta
             throw new NotImplementedException();
         }
 
-        IRack NewRack() {
+        IRack NewRack()
+        {
             IRack rack = null;
-            
-            return rack; }
+
+            return rack;
+        }
 
 
 
