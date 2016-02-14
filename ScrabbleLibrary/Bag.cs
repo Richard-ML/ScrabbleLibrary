@@ -72,8 +72,6 @@ namespace ScrabbleLibrary
                 temp.RemoveAt(randNum); 
             }
 
-
- 
         }
 
 
