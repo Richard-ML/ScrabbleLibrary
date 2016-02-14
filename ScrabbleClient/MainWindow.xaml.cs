@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ScrabbleLibrary;
 
 namespace ScrabbleClient
 {
@@ -20,6 +21,7 @@ namespace ScrabbleClient
     /// </summary>
     public partial class MainWindow : Window
     {
+        Bag bag = new Bag();
         public MainWindow()
         {
             InitializeComponent();
@@ -51,6 +53,7 @@ namespace ScrabbleClient
 
         private void cbNumPlayers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            bag.numPlayers = (int)cbNumPlayers.SelectedValue;
             bool done = false;
             while (!done)
                 if (cbCurPlayer.Items.Count < (int)cbNumPlayers.SelectedValue)
@@ -65,7 +68,12 @@ namespace ScrabbleClient
                 {
                     done = true;
                 }
+            
+        }
 
+        private void cbCurPlayer_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            bag.currPlayer = (int)cbCurPlayer.SelectedValue;
         }
     }
 }
