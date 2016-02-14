@@ -15,9 +15,9 @@ using System.Threading.Tasks;
 
 namespace ScrabbleLibrary
 {
-    interface IRack
+    public interface IRack
     {
-      //  string[] rack { get; set; }
+        //string[] rack { get; set; }
         int GetPoints(string candidate);
         string PlayWord(string candidate);
         string SwapAll();
