@@ -39,7 +39,7 @@ namespace ScrabbleClient
 
             cbNumPlayers.SelectedIndex = 0;
 
-
+            bag.rack = new string[bag.numPlayers];
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
