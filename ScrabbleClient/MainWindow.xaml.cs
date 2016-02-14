@@ -38,7 +38,8 @@ namespace ScrabbleClient
             cbNumPlayers.Items.Add(4);
 
             cbNumPlayers.SelectedIndex = 0;
-
+            bag.TopUp();
+            tbRack.Text = bag.ToString();
             bag.rack = new string[bag.numPlayers];
         }
 

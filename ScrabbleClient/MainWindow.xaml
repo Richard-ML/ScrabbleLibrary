@@ -35,7 +35,7 @@
                     <TranslateTransform/>
                 </TransformGroup>
             </Label.RenderTransform>
-        </Label>
+        </Label><!---->
         <ComboBox x:Name="cbNumPlayers" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" Margin="10.4,32,0,0" VerticalAlignment="Top" Width="239" SelectionChanged="cbNumPlayers_SelectionChanged"/>
         <ComboBox x:Name="cbCurPlayer" ToolTip="Current Players Turn"  Grid.ColumnSpan="1" HorizontalAlignment="Left" Margin="4,32,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" SelectionChanged="cbCurPlayer_SelectionChanged"/>
         <TextBox x:Name="tbRack" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Rack" VerticalAlignment="Top" Width="120" Grid.Column="1" Margin="4.4,32,0,0" Grid.Row="1"/>
