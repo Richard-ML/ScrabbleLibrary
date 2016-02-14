@@ -34,19 +34,14 @@ namespace ScrabbleLibrary
 
         public string[] rack
         {
-            get
-            {
-                return rack;
-            }
+            get;
 
-            set
-            {
-                rack = value;
-            }
+            set;
         }
-
+       
         public Bag()
         {
+            this.rack = new string[3];
             List<char> temp = new List<char>
             {
                 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A',
