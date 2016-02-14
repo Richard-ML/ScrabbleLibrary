@@ -74,6 +74,9 @@ namespace ScrabbleClient
         private void cbCurPlayer_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             bag.currPlayer = (int)cbCurPlayer.SelectedValue;
+
+            bag.TopUp();
+            tbRack.Text = bag.ToString();
         }
     }
 }

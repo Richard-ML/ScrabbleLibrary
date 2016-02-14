@@ -30,18 +30,15 @@ namespace ScrabbleLibrary
         private Dictionary<char, int> letterValue = new Dictionary<char, int>() { { 'a', 1 }, { 'b', 3 }, { 'c', 3 }, { 'd', 2 }, { 'e', 1 }, { 'f', 4 }, { 'g', 2 }, { 'h', 4 }, { 'i', 1 }, { 'j', 8 }, { 'k', 5 }, { 'l', 1 }, { 'm', 3 }, { 'n', 1 }, { 'o', 1 }, { 'p', 3 }, { 'q', 10 }, { 'r', 1 }, { 's', 1 }, { 't', 1 }, { 'u', 1 }, { 'v', 4 }, { 'w', 4 }, { 'x', 8 }, { 'y', 4 }, { 'z', 10 } };
         private List<char> letters = new List<char>();
         public int currPlayer = 1;
-        public int numPlayers = 1;
+        public int numPlayers = 2;
+       public string[] rack = new string[4];
 
-        public string[] rack
-        {
-            get;
-
-            set;
-        }
        
         public Bag()
         {
-           
+
+
+
             List<char> temp = new List<char>
             {
                 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A',
@@ -180,16 +177,16 @@ namespace ScrabbleLibrary
         contains seven tiles or the bag is empty. The method also returns a string containing all the rack’s letters on completion of the method call. */
         public string TopUp()
         {
-            for (int x = 0; x < numPlayers; ++x)
+            for (int x = 0; x < numPlayers; x++)
             {
                 if(numPlayers == currPlayer)
                 {
-                    while (rack[x].Length != 7)
+                    while (rack[x] == null || rack[x].Length < 7 )
                     {
                         if (letters.Count != 0)
                         {
-                            rack[x] = rack[x] + letters[0];
-                            letters.Remove(letters[0]);
+                            rack[x] += letters[0];
+                            letters.RemoveAt(0);
                         }
                     }
                 }
@@ -209,7 +206,7 @@ namespace ScrabbleLibrary
         /*ToString() method simply returns a string containing all the rack’s letters. This method will override the existing inherited ToString() method.*/
         public override string ToString()
         {
-            throw new NotImplementedException();
+            return rack[currPlayer-1];
         }
 
         IRack IBag.NewRack()
