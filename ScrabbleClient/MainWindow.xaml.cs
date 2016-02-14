@@ -54,6 +54,7 @@ namespace ScrabbleClient
         private void cbNumPlayers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             bag.numPlayers = (int)cbNumPlayers.SelectedValue;
+
             bool done = false;
             while (!done)
                 if (cbCurPlayer.Items.Count < (int)cbNumPlayers.SelectedValue)
