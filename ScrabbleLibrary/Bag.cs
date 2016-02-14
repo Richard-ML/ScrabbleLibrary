@@ -29,9 +29,9 @@ namespace ScrabbleLibrary
     {
         private Dictionary<char, int> letterValue = new Dictionary<char, int>() { { 'a', 1 }, { 'b', 3 }, { 'c', 3 }, { 'd', 2 }, { 'e', 1 }, { 'f', 4 }, { 'g', 2 }, { 'h', 4 }, { 'i', 1 }, { 'j', 8 }, { 'k', 5 }, { 'l', 1 }, { 'm', 3 }, { 'n', 1 }, { 'o', 1 }, { 'p', 3 }, { 'q', 10 }, { 'r', 1 }, { 's', 1 }, { 't', 1 }, { 'u', 1 }, { 'v', 4 }, { 'w', 4 }, { 'x', 8 }, { 'y', 4 }, { 'z', 10 } };
         private List<char> letters = new List<char>();
-        public int currPlayer = 1;
+        public int currPlayer = 0;
         public int numPlayers = 2;
-       public string[] rack = new string[4];
+        public string[] rack = new string[2];
 
        
         public Bag()
@@ -177,7 +177,7 @@ namespace ScrabbleLibrary
         contains seven tiles or the bag is empty. The method also returns a string containing all the rack’s letters on completion of the method call. */
         public string TopUp()
         {
-            for (int x = 0; x < numPlayers; x++)
+            for (int x = 0; x < numPlayers; ++x)
             {
                 if(numPlayers == currPlayer)
                 {
@@ -203,10 +203,35 @@ namespace ScrabbleLibrary
             return null;
         }
 
+        //add new player and populate values
+        string[] Add(string[] array, string newValue)
+        {
+            int newLength = array.Length + 1;
+
+            string[] result = new string[newLength];
+
+            result[newLength - 1] = newValue;
+
+            return result;
+        }
+
+        //remove new player and populate values
+        string[] Remove(string[] array, string newValue)
+        {
+            int newLength = array.Length - 1;
+
+            string[] result = new string[newLength];
+
+            result[newLength + 1] = newValue;
+
+            return result;
+        }
+
+
         /*ToString() method simply returns a string containing all the rack’s letters. This method will override the existing inherited ToString() method.*/
         public override string ToString()
         {
-            return rack[currPlayer- 1];
+            return rack[currPlayer];
         }
 
         IRack IBag.NewRack()
@@ -214,11 +239,29 @@ namespace ScrabbleLibrary
             throw new NotImplementedException();
         }
 
-        IRack NewRack()
+        public IRack NewRack()
         {
-            IRack rack = null;
+            int temp;
+            //IRack rack = null;
+            if (rack.Length < numPlayers)
+            {
+                temp = numPlayers - rack.Length;
+                for (int i = 0; i < temp; ++i)
+                {
+                    Add(rack, TopUp());
+                    
+                }
+            }
+            else
+            {
+                temp = rack.Length - numPlayers;
+                for(int i = 0; i < temp; ++i)
+                {
+                    Remove(rack, TopUp());
+                }
+            }
 
-            return rack;
+            return null;
         }
 
 
