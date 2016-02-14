@@ -5,8 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ScrabbleClient"
         mc:Ignorable="d"
-        Title="Scrabble Client" Height="350" Width="525" ResizeMode="NoResize">
+        Title="Scrabble Client" Height="350" Width="525" ResizeMode="NoResize" FontStyle="Italic">
     <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                <GradientStop Color="#FF542A2A" Offset="1"/>
+                <GradientStop Color="#FFFF2E2E"/>
+                <GradientStop Color="#FF892F2F" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
@@ -19,15 +26,33 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Label x:Name="lblNumPlayers" Content="Number of Players:" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Center"/>
-        <ComboBox x:Name="cbNumPlayers" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" Margin="14.4,35,0,0" VerticalAlignment="Top" Width="235" SelectionChanged="cbNumPlayers_SelectionChanged"/>
+        <Label x:Name="lblNumPlayers" Content="Number of Players:" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Margin="2,27,0,20" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" FontFamily="Impact" FontSize="16" Grid.ColumnSpan="2" Height="33">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="25"/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
+        <ComboBox x:Name="cbNumPlayers" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" Margin="10.4,32,0,0" VerticalAlignment="Top" Width="239" SelectionChanged="cbNumPlayers_SelectionChanged"/>
         <ComboBox x:Name="cbCurPlayer" ToolTip="Current Players Turn"  Grid.ColumnSpan="1" HorizontalAlignment="Left" Margin="4,32,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" SelectionChanged="cbCurPlayer_SelectionChanged"/>
         <TextBox x:Name="tbRack" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Rack" VerticalAlignment="Top" Width="120" Grid.Column="1" Margin="4.4,32,0,0" Grid.Row="1"/>
-        <Button x:Name="btnTopUp" Content="Top Up" Grid.Column="2" HorizontalAlignment="Left" Margin="9.8,35,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="btnSwapLetters" Content="Swap Letters" Grid.Column="3" HorizontalAlignment="Left" Margin="10.2,35,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75"/>
-        <Label x:Name="lblWord" Content="Word:" HorizontalAlignment="Left" Margin="88,37,0,0" Grid.Row="2" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <Button x:Name="btnTopUp" Content="Top Up" Grid.Column="2" HorizontalAlignment="Left" Margin="9.8,35,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}"/>
+        <Button x:Name="btnSwapLetters" Content="Swap Letters" Grid.Column="3" HorizontalAlignment="Left" Margin="10.2,35,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}"/>
+        <Label x:Name="lblWord" Content="Word:" HorizontalAlignment="Left" Margin="77,32,0,0" Grid.Row="2" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" FontFamily="Impact" FontSize="16">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="25"/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
         <TextBox x:Name="tbWord" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="4.4,37,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Word" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="btnClose" Content="Close" Grid.Column="3" HorizontalAlignment="Left" Margin="10.2,36,0,0" Grid.Row="3" VerticalAlignment="Top" Width="75" ToolTip="Exits the client" Click="btnClose_Click"/>
+        <Button x:Name="btnClose" Content="Close" Grid.Column="3" HorizontalAlignment="Left" Margin="10.2,36,0,0" Grid.Row="3" VerticalAlignment="Top" Width="75" ToolTip="Exits the client" Click="btnClose_Click" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}"/>
 
     </Grid>
 </Window>
