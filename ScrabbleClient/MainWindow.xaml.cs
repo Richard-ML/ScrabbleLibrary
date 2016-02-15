@@ -98,7 +98,7 @@ namespace ScrabbleClient
         private void btnTestWord_Click(object sender, RoutedEventArgs e)
         {
 
-            int value = bag.GetPoints(tbWord.Text.ToUpper());
+            int value = bag.GetPoints(tbWord.Text);
             if (value != 0)
             {
                 MessageBoxResult result = MessageBox.Show("Word value: " + value, "Test Word", MessageBoxButton.OK);
@@ -112,7 +112,7 @@ namespace ScrabbleClient
         private void btnPlayWord_Click(object sender, RoutedEventArgs e)
         {
           string initText = tbRack.Text;
-          tbRack.Text=  bag.PlayWord(tbWord.Text.ToUpper());
+          tbRack.Text=  bag.PlayWord(tbWord.Text);
           if(initText == tbRack.Text)
             {
                 MessageBoxResult result = MessageBox.Show("That word is invalid!", "Test Word", MessageBoxButton.OK);
