@@ -189,30 +189,6 @@ namespace ScrabbleLibrary
             return rack[currPlayer-1];
         }
 
-        //add new player and populate values
-        string[] Add(string[] array, string newValue)
-        {
-            int newLength = array.Length + 1;
-
-            string[] result = new string[newLength];
-
-            result[newLength - 1] = newValue;
-
-            return result;
-        }
-
-        //remove new player and populate values
-        string[] Remove(string[] array, string newValue)
-        {
-            int newLength = array.Length - 1;
-
-            string[] result = new string[newLength];
-
-            result[newLength + 1] = newValue;
-
-            return result;
-        }
-
 
         /*ToString() method simply returns a string containing all the rack’s letters. This method will override the existing inherited ToString() method.*/
         public override string ToString()
