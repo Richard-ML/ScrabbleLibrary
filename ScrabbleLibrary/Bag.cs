@@ -108,7 +108,8 @@ namespace ScrabbleLibrary
         removes the letters of the word from the rack object and returns a string containing the remaining letters.*/
         public string PlayWord(string candidate)
         {
-            //TODO: Add spellcheck!! 
+            //TODO: Add spellcheck!!
+            candidate = candidate.ToUpper();
             string result = rack[currPlayer - 1];//Copy the rack so we can remove each character as it is matched without effecting the origial data until we confirm it is a valid word
             bool valid = true;
             for (int candiChar = 0; candiChar < candidate.Length; candiChar++)
