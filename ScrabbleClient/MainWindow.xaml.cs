@@ -111,7 +111,13 @@ namespace ScrabbleClient
 
         private void btnPlayWord_Click(object sender, RoutedEventArgs e)
         {
+          string initText = tbRack.Text;
           tbRack.Text=  bag.PlayWord(tbWord.Text.ToUpper());
+          if(initText == tbRack.Text)
+            {
+                MessageBoxResult result = MessageBox.Show("That word is invalid!", "Test Word", MessageBoxButton.OK);
+            }
+
         }
     }
 }
