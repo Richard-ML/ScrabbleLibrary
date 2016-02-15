@@ -97,9 +97,16 @@ namespace ScrabbleClient
 
         private void btnTestWord_Click(object sender, RoutedEventArgs e)
         {
-            int value = bag.GetPoints(tbWord.Text);
-            MessageBoxResult result = MessageBox.Show("Word value: " + value, "Test Word", MessageBoxButton.OK);
 
+            int value = bag.GetPoints(tbWord.Text);
+            if (value != 0)
+            {
+                MessageBoxResult result = MessageBox.Show("Word value: " + value, "Test Word", MessageBoxButton.OK);
+            }
+            else
+            {
+                MessageBoxResult result = MessageBox.Show("That word is invalid!", "Test Word", MessageBoxButton.OK);
+            }
         }
     }
 }
