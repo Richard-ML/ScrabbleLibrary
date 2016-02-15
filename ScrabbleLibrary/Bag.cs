@@ -13,7 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Word = Microsoft.Office.Interop.Word.Application;
 
 /*ScrabbleLibrary
   Must be implemented as a class library assembly using C#
@@ -33,7 +33,8 @@ namespace ScrabbleLibrary
         public int currPlayer = 1;//Current players turn defaulted to player one.
         public int numPlayers = 0;//Ammount of players playing (2-4)
 
-
+        //Check Spelling object
+        Word word = new Word();// use word.CheckSpelling(string word) **See line 16 for more details**
 
         public Bag()
         {
@@ -91,14 +92,17 @@ namespace ScrabbleLibrary
         the method return 0.*/
         public int GetPoints(string candidate)
         {
-            int score = 0;
             candidate = candidate.ToLower();
-            int value;
-
-            for (int nc = 0; nc < candidate.Length; nc++)
+            int score = 0;
+            if (word.CheckSpelling(candidate) == true)
             {
-                if (letterValue.TryGetValue(candidate.ElementAt(nc), out value))
-                    score += value;
+                int value;
+
+                for (int nc = 0; nc < candidate.Length; nc++)
+                {
+                    if (letterValue.TryGetValue(candidate.ElementAt(nc), out value))
+                        score += value;
+                }
             }
             return score;
         }
@@ -108,37 +112,40 @@ namespace ScrabbleLibrary
         removes the letters of the word from the rack object and returns a string containing the remaining letters.*/
         public string PlayWord(string candidate)
         {
-            //TODO: Add spellcheck!!
-            candidate = candidate.ToUpper();
-            string result = rack[currPlayer - 1];//Copy the rack so we can remove each character as it is matched without effecting the origial data until we confirm it is a valid word
-            bool valid = true;
-            //if (IApplication.CheckSpelling(candidate) == true)
-            //{
+            candidate = candidate.ToLower();
+            if (word.CheckSpelling(candidate) == true)
+            {
+                candidate = candidate.ToUpper();
+                string result = rack[currPlayer - 1];//Copy the rack so we can remove each character as it is matched without effecting the origial data until we confirm it is a valid word
+                bool valid = true;
+                //if (IApplication.CheckSpelling(candidate) == true)
+                //{
 
-            //}
-            for (int candiChar = 0; candiChar < candidate.Length; candiChar++)
-            {
-                bool containsChar = false;
-                for (int nc1 = 0; nc1 < result.Length; nc1++)
+                //}
+                for (int candiChar = 0; candiChar < candidate.Length; candiChar++)
                 {
-                    if (result[nc1] == candidate[candiChar])
+                    bool containsChar = false;
+                    for (int nc1 = 0; nc1 < result.Length; nc1++)
                     {
-                        containsChar = true;
-                        string temp = "";
-                        for (int tempChar = 0; tempChar < result.Length; tempChar++)
-                            if (tempChar != nc1)
-                                temp += result[tempChar];
-                        result = temp;
-                        goto outOfFor;//Break out of current look to prevent multiple characters from being removed
+                        if (result[nc1] == candidate[candiChar])
+                        {
+                            containsChar = true;
+                            string temp = "";
+                            for (int tempChar = 0; tempChar < result.Length; tempChar++)
+                                if (tempChar != nc1)
+                                    temp += result[tempChar];
+                            result = temp;
+                            goto outOfFor;//Break out of current look to prevent multiple characters from being removed
+                        }
                     }
+                    outOfFor:
+                    if (containsChar == false)
+                        valid = false;
                 }
-                outOfFor:
-                if (containsChar == false)
-                    valid = false;
-            }
-            if (valid == true)
-            {
-                rack[currPlayer - 1] = result;
+                if (valid == true)
+                {
+                    rack[currPlayer - 1] = result;
+                }
             }
             return rack[currPlayer - 1];
         }
