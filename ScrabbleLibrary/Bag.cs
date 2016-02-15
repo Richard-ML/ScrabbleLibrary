@@ -112,6 +112,10 @@ namespace ScrabbleLibrary
             candidate = candidate.ToUpper();
             string result = rack[currPlayer - 1];//Copy the rack so we can remove each character as it is matched without effecting the origial data until we confirm it is a valid word
             bool valid = true;
+            //if (IApplication.CheckSpelling(candidate) == true)
+            //{
+
+            //}
             for (int candiChar = 0; candiChar < candidate.Length; candiChar++)
             {
                 bool containsChar = false;
