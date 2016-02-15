@@ -142,37 +142,16 @@ namespace ScrabbleLibrary
         tiles from the bag. The method also returns a string containing all the rack’s letters on completion of the method call.*/
         public string SwapAll()
         {
-            for (int x = 0; x < numPlayers; ++x)
-            {
-                if (numPlayers == currPlayer)
-                {
-                    if (!(rack[x].Length < 7))
+     
+                    if (rack[currPlayer-1].Length >= 7)
                     {
-                        if (!(letters.Count < 7))
+                        if (letters.Count >= 7)
                         {
-                            rack[x] = "";
-                        }
-                        else
-                        {
-                            //write to textbox "Your bag does not have enough letters left to swap
+                            rack[currPlayer-1] = "";//Discard current letters in rack
+                            TopUp();
                         }
                     }
-                    else
-                    {
-                        //Write to textbox "Your rack must contain 7 letters to use Swap!"
-                    }
-                }
-            }
-            TopUp();
-
-            for (int x = 0; x < numPlayers; ++x)
-            {
-                if (numPlayers == currPlayer)
-                {
-                    return rack[x];
-                }
-            }
-            return null;
+            return rack[currPlayer - 1];
         }
 
         /*TopUp() method does nothing if the rack already has seven tiles or if the bag is empty, otherwise it adds new tiles to the rack from the bag until either the rack
