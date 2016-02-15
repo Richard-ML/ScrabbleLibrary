@@ -172,7 +172,7 @@ namespace ScrabbleLibrary
         /*ToString() method simply returns a string containing all the rack’s letters. This method will override the existing inherited ToString() method.*/
         public override string ToString()
         {
-            return rack[currPlayer];
+            return rack[currPlayer-1];
         }
 
 
