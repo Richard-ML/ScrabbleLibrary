@@ -82,5 +82,22 @@ namespace ScrabbleClient
             
             tbRack.Text = bag.ToString();
         }
+
+        private void btnTopUp_Click(object sender, RoutedEventArgs e)
+        {
+            tbRack.Text = bag.TopUp();
+        }
+
+        private void btnSwapLetters_Click(object sender, RoutedEventArgs e)
+        {
+          tbRack.Text = bag.SwapAll();
+        }
+
+        private void btnTestWord_Click(object sender, RoutedEventArgs e)
+        {
+            int value = bag.GetPoints(tbWord.Text);
+            MessageBoxResult result = MessageBox.Show("Word value: " + value, "Test Word", MessageBoxButton.OK);
+
+        }
     }
 }
