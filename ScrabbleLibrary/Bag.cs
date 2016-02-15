@@ -131,7 +131,7 @@ namespace ScrabbleLibrary
                 if (containsChar == false)
                     valid = false;
             }
-            if(valid == true)
+            if (valid == true)
             {
                 rack[currPlayer - 1] = result;
             }
@@ -142,15 +142,15 @@ namespace ScrabbleLibrary
         tiles from the bag. The method also returns a string containing all the rack’s letters on completion of the method call.*/
         public string SwapAll()
         {
-     
-                    if (rack[currPlayer-1].Length >= 7)
-                    {
-                        if (letters.Count >= 7)
-                        {
-                            rack[currPlayer-1] = "";//Discard current letters in rack
-                            TopUp();
-                        }
-                    }
+
+            if (rack[currPlayer - 1].Length >= 7)
+            {
+                if (letters.Count >= 7)
+                {
+                    rack[currPlayer - 1] = "";//Discard current letters in rack
+                    TopUp();
+                }
+            }
             return rack[currPlayer - 1];
         }
 
@@ -158,21 +158,21 @@ namespace ScrabbleLibrary
         contains seven tiles or the bag is empty. The method also returns a string containing all the rack’s letters on completion of the method call. */
         public string TopUp()
         {
-            while (rack[currPlayer-1] == null || rack[currPlayer-1].Length < 7)
+            while (rack[currPlayer - 1] == null || rack[currPlayer - 1].Length < 7)
                 if (letters.Count > 0)
                 {
-                    rack[currPlayer-1] += letters[0];
+                    rack[currPlayer - 1] += letters[0];
                     letters.RemoveAt(0);
 
                 }
-            return rack[currPlayer-1];
+            return rack[currPlayer - 1];
         }
 
 
         /*ToString() method simply returns a string containing all the rack’s letters. This method will override the existing inherited ToString() method.*/
         public override string ToString()
         {
-            return rack[currPlayer-1];
+            return rack[currPlayer - 1];
         }
 
 

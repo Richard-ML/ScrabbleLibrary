@@ -65,9 +65,9 @@ namespace ScrabbleClient
             while (!done)
                 if (cbCurPlayer.Items.Count < (int)cbNumPlayers.SelectedValue)
                 {
-                    cbCurPlayer.Items.Add((int) 1+ cbCurPlayer.Items.Count);//magic
+                    cbCurPlayer.Items.Add((int)1 + cbCurPlayer.Items.Count);//magic
                 }
-            else if(cbCurPlayer.Items.Count > (int)cbNumPlayers.SelectedValue)
+                else if (cbCurPlayer.Items.Count > (int)cbNumPlayers.SelectedValue)
                 {
                     cbCurPlayer.Items.RemoveAt(-1 + cbCurPlayer.Items.Count);
                 }
@@ -80,8 +80,8 @@ namespace ScrabbleClient
 
         private void cbCurPlayer_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(cbCurPlayer.SelectedValue != null)
-            bag.currPlayer = (int)cbCurPlayer.SelectedValue;
+            if (cbCurPlayer.SelectedValue != null)
+                bag.currPlayer = (int)cbCurPlayer.SelectedValue;
             tbRack.Text = bag.ToString();
         }
 
@@ -92,7 +92,7 @@ namespace ScrabbleClient
 
         private void btnSwapLetters_Click(object sender, RoutedEventArgs e)
         {
-          tbRack.Text = bag.SwapAll();
+            tbRack.Text = bag.SwapAll();
         }
 
         private void btnTestWord_Click(object sender, RoutedEventArgs e)

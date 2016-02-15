@@ -17,7 +17,6 @@ namespace ScrabbleLibrary
 {
     interface IBag: IRack
     {
-     
         IRack NewRack();
     }
 }
