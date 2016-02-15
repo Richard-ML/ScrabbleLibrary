@@ -40,7 +40,7 @@ namespace ScrabbleClient
             cbNumPlayers.SelectedIndex = 0;
             bag.TopUp();
             tbRack.Text = bag.ToString();
-            bag.rack = new string[bag.numPlayers];
+            //bag.rack = new string[bag.numPlayers];
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
@@ -55,7 +55,7 @@ namespace ScrabbleClient
         private void cbNumPlayers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             bag.numPlayers = (int)cbNumPlayers.SelectedValue;
-            bag.NewRack();
+           // bag.NewRack();
 
             bool done = false;
             while (!done)

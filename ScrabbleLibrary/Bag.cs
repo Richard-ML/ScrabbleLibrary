@@ -28,17 +28,16 @@ namespace ScrabbleLibrary
     public class Bag : IBag
     {
         private Dictionary<char, int> letterValue = new Dictionary<char, int>() { { 'a', 1 }, { 'b', 3 }, { 'c', 3 }, { 'd', 2 }, { 'e', 1 }, { 'f', 4 }, { 'g', 2 }, { 'h', 4 }, { 'i', 1 }, { 'j', 8 }, { 'k', 5 }, { 'l', 1 }, { 'm', 3 }, { 'n', 1 }, { 'o', 1 }, { 'p', 3 }, { 'q', 10 }, { 'r', 1 }, { 's', 1 }, { 't', 1 }, { 'u', 1 }, { 'v', 4 }, { 'w', 4 }, { 'x', 8 }, { 'y', 4 }, { 'z', 10 } };
-        private List<char> letters = new List<char>();
-        public int currPlayer = 0;
-        public int numPlayers = 2;
-        public string[] rack = new string[2];
+        private List<char> letters = new List<char>();//The char contents of the bag
+        private List<string> rack = new List<string>();//The string contents of each rack
+        public int currPlayer = 1;//Current players turn defaulted to player one.
+        public int numPlayers = 2;//Ammount of players playing (2-4)
 
-       
+
+
         public Bag()
         {
-
-
-
+            //Setup the bag by populating it with randomly selected elements from the defulat list of characters in scrabble
             List<char> temp = new List<char>
             {
                 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A',
@@ -69,7 +68,7 @@ namespace ScrabbleLibrary
                 'Z'
             };
 
-            //shuffle chars into letters list
+            //Shuffle characters into the letters list and remove them from the default collection of characters
             Random rNum = new Random();
             int randNum;
             while (temp.Count > 0)
@@ -79,8 +78,11 @@ namespace ScrabbleLibrary
                 temp.RemoveAt(randNum);
             }
 
-        }
+            //Setup the racks for the two default/minimum scrabble players
+            NewRack();
+            NewRack();
 
+        }
 
 
         /* GetPoints() method accepts a string containing a candidate word and returns its potential point value based on two criteria: 1)
@@ -106,34 +108,34 @@ namespace ScrabbleLibrary
         removes the letters of the word from the rack object and returns a string containing the remaining letters.*/
         public string PlayWord(string candidate)
         {
-            //for loop for the number of chars in the word player is trying to play
-            for (int i = 0; i < candidate.Length; i++)
+            //TODO: Add spellcheck!! 
+            string result = rack[currPlayer - 1];//Copy the rack so we can remove each character as it is matched without effecting the origial data until we confirm it is a valid word
+            bool valid = true;
+            for (int candiChar = 0; candiChar < candidate.Length; candiChar++)
             {
-                //for loop for the number of chars in players rack
-                for (int j = 0; j < rack.Length; j++)
+                bool containsChar = false;
+                for (int nc1 = 0; nc1 < result.Length; nc1++)
                 {
-                    //for loop for the number of players
-                    for (int x = 0; x < numPlayers; ++x)
+                    if (result[nc1] == candidate[candiChar])
                     {
-                        if (candidate[i] == rack[x][j])
-                        {
-                            rack[x].Remove(rack[x][j]);
-                        }
-                        else
-                        {
-                            //write to text field "your rack does not contain one or more of the required letters."
-                        }
+                        containsChar = true;
+                        string temp = "";
+                        for (int tempChar = 0; tempChar < result.Length; tempChar++)
+                            if (tempChar != nc1)
+                                temp += result[tempChar];
+                        result = temp;
+                        goto outOfFor;//Break out of current look to prevent multiple characters from being removed
                     }
                 }
+                outOfFor:
+                if (containsChar == false)
+                    valid = false;
             }
-            for (int x = 0; x < numPlayers; ++x)
+            if(valid == true)
             {
-                if (numPlayers == currPlayer)
-                {
-                    return rack[x];
-                }
+                rack[currPlayer - 1] = result;
             }
-            return null;
+            return rack[currPlayer - 1];
         }
 
         /*SwapAll() method does nothing if either the rack or the bag have fewer than seven tiles, otherwise it discards the rack’s current tiles and takes seven new
@@ -142,7 +144,7 @@ namespace ScrabbleLibrary
         {
             for (int x = 0; x < numPlayers; ++x)
             {
-                if(numPlayers == currPlayer)
+                if (numPlayers == currPlayer)
                 {
                     if (!(rack[x].Length < 7))
                     {
@@ -177,30 +179,14 @@ namespace ScrabbleLibrary
         contains seven tiles or the bag is empty. The method also returns a string containing all the rack’s letters on completion of the method call. */
         public string TopUp()
         {
-            for (int x = 0; x < numPlayers; ++x)
-            {
-                if(numPlayers == currPlayer)
+            while (rack[currPlayer-1] == null || rack[currPlayer-1].Length < 7)
+                if (letters.Count > 0)
                 {
-                    while (rack[x] == null || rack[x].Length < 7 )
-                    {
-                        if (letters.Count != 0)
-                        {
-                            rack[x] += letters[0];
-                            letters.RemoveAt(0);
-                        }
-                    }
-                }
+                    rack[currPlayer-1] += letters[0];
+                    letters.RemoveAt(0);
 
-            }
-
-            for (int x = 0; x < numPlayers; ++x)
-            {
-                if (numPlayers == currPlayer)
-                {
-                    return rack[x];
                 }
-            }
-            return null;
+            return rack[currPlayer-1];
         }
 
         //add new player and populate values
@@ -234,38 +220,41 @@ namespace ScrabbleLibrary
             return rack[currPlayer];
         }
 
+
         IRack IBag.NewRack()
-        {
-            throw new NotImplementedException();
-        }
+        {/*
+            int tempPlayersTurn = currPlayer; //Create a temp variable to ensure once this code is run that it is still that players turn
+            if (numPlayers < 4)
+            {
+                numPlayers++;
+                currPlayer = numPlayers;//Set the curPlayer to the new player so the TopUp method fills up their rack
+                rack.Add("");//Add a rack to the rack object/string list
+                TopUp();//Fill the new players rack with letters
+                currPlayer = tempPlayersTurn;//restore to the correct players turn
 
-        public IRack NewRack()
-        {
-            int temp;
-            //IRack rack = null;
-            if (rack.Length < numPlayers)
-            {
-                temp = numPlayers - rack.Length;
-                for (int i = 0; i < temp; ++i)
-                {
-                    Add(rack, TopUp());
-                    
-                }
-            }
-            else
-            {
-                temp = rack.Length - numPlayers;
-                for(int i = 0; i < temp; ++i)
-                {
-                    Remove(rack, TopUp());
-                }
             }
 
-            return null;
+            */
+            return null;// The maximum amount of player racks have already been created.
         }
 
 
+        public string NewRack()
+        {
+
+            int tempPlayersTurn = currPlayer; //Create a temp variable to ensure once this code is run that it is still that players turn
+            if (numPlayers < 4)
+            {
+                numPlayers++;
+                currPlayer = numPlayers;//Set the curPlayer to the new player so the TopUp method fills up their rack
+                rack.Add("");//Add a rack to the rack object/string list
+                TopUp();//Fill the new players rack with letters
+                currPlayer = tempPlayersTurn;//restore to the correct players turn
+                return rack[numPlayers - 1];
+            }
 
 
+            return null;// The maximum amount of player racks have already been created.
+        }
     }
 }
