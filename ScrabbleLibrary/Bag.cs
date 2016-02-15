@@ -31,7 +31,7 @@ namespace ScrabbleLibrary
         private List<char> letters = new List<char>();//The char contents of the bag
         private List<string> rack = new List<string>();//The string contents of each rack
         public int currPlayer = 1;//Current players turn defaulted to player one.
-        public int numPlayers = 2;//Ammount of players playing (2-4)
+        public int numPlayers = 0;//Ammount of players playing (2-4)
 
 
 
@@ -207,8 +207,6 @@ namespace ScrabbleLibrary
                 currPlayer = tempPlayersTurn;//restore to the correct players turn
                 return rack[numPlayers - 1];
             }
-
-
             return null;// The maximum amount of player racks have already been created.
         }
     }
