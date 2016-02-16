@@ -40,8 +40,7 @@ namespace ScrabbleClient
             cbNumPlayers.SelectedIndex = 0;
             bag.TopUp();
             tbRack.Text = bag.ToString();
-
-            tbWord.SpellCheck.IsEnabled = true;
+            //bag.rack = new string[bag.numPlayers];
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
